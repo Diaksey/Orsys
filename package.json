@@ -1,0 +1,11 @@
+{
+  "name": "orsys",
+  "version": "1.0.0",
+  "description": "Je suis un repo de test",
+  "scripts": {
+    "start": "npx lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
