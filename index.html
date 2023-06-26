@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon projet ORSYS</title>
+    <title>Guide Valorant</title>
     <link rel="stylesheet" href="/styles/styles.css" />
     <link
       rel="stylesheet"
@@ -16,7 +16,7 @@
       <div id="header-name">
         Meme<span id="dot">.</span><span id="js">js</span>
       </div>
-      <div id="theme">theme</div>
+      <div id="theme"></div>
     </header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
       <div class="container">
@@ -73,13 +73,77 @@
     </nav>
 
     <article>
-        <div id="editor">
+      <div id="editor">
         <div id="editor-view">
-            <img src="https://valorant-landing-page.vercel.app/assets/agents/jett.svg">
+          <img
+            src="https://valorant-landing-page.vercel.app/assets/agents/jett.svg"
+          />
         </div>
-        <div id="editor-form">Section de saisie</div>
-    </div>
+        <div id="editor-form">
+          <form action="#" name="meme-form">
+            <h2>Titre</h2>
+            <input
+              type="texte"
+              name="titre"
+              id="meme-titre"
+              placeholder="Saisir titre"
+            />
+            <hr />
+            <label for="meme-image"><h2>Image</h2></label><br />
+            <select name="ImageId" id="meme-image">
+              <option value="-1">Aucune image</option>
+              <option value="1">Image 1</option>
+              <option value="2">Image 2</option>
+            </select>
+            <hr />
+            <h2>Text</h2>
+            <input
+              type="texte"
+              name="text"
+              id="meme-text"
+              placeholder="Saisir texte"
+            />
+            <div class="flex-col">
+              <div>
+                <label for="meme-x">x</label><br />
+                <input type="number" name="x" id="meme-x" />
+              </div>
+              <div>
+                <label for="meme-y">y</label><br />
+                <input type="number" name="y" id="meme-y" />
+              </div>
+            </div>
+            <h2>Décorations</h2>
+            <label for="meme-color">Couleur :</label>
+            <input type="color" name="color" id="meme-color" />
+            <br />
+            <hr />
+
+            <div>
+              <label for="meme-police">Police :</label>
+              <input
+                type="number"
+                name="police"
+                id="meme-police"
+                placeholder="Taille de la police"
+              />px
+            </div>
+            <div class="center">
+              <input
+                class="btn btn-warning"
+                type="reset"
+                id="meme-reset"
+                value="Annuler"
+              />
+              <button class="btn btn-primary" type="submit" id="meme-submit">
+                Valider
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </article>
+
     <footer>ARNOULD Th&eacute;o &copy; 2023</footer>
   </body>
 </html>
