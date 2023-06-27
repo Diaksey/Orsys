@@ -1,4 +1,9 @@
 /* Section du header name*/
+header{
+    display: flex;
+    padding-bottom: 5px;
+}
+
 #header-name {
   color: darkviolet;
   font-weight: 900;
@@ -6,6 +11,7 @@
   text-shadow: 10px 20px 25px grey;
   text-decoration: underline black;
   padding-left: 25px;
+  flex-grow: 1;
 }
 
 #dot {
@@ -69,3 +75,4 @@ input [type="number"]{
 .center{
     text-align: center;
 }
+
