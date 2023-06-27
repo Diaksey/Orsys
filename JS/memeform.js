@@ -7,7 +7,7 @@ function initMemeEditor() {
     renderMeme();
   });
   form["imageId"].addEventListener("input", function (evt) {
-    currentMeme.imageId = evt.target.value;
+    currentMeme.imageId = Number (evt.target.value);
     renderMeme();
   });
   form["text"].addEventListener("input", function (evt) {
@@ -62,16 +62,21 @@ function renderMeme(meme) {
   //textElement.style.fontStyle = meme.italic ? "italic" : "normal" ;
 }
 function loadSelectImages(images) {
-    var select = document.forms['meme-form']['imageId'];
-    //document.forms['meme-form']['imageId'];
-    var optBase = document.createElement('option');
-    optBase.value="erty";
-    optBase.innerHTML='text-visuel';
-    select.appendChild(optBase);
-    images.forEach(function(img){
-        var opt=optBase.cloneNode(true);
-        opt.value=img.id;
-        opt.innerHTML=img.titre;
-        select.appendChild(opt);
-    });
+  var select = document.forms["meme-form"]["imageId"];
+  var children = select.children[0].cloneNode(true);
+  select.innerHTML='';
+  for (var index = 1; index < children.length; index++) {
+    children[index].remove();
+  }
+  //document.forms['meme-form']['imageId'];
+  var optBase = document.createElement("option");
+  optBase.value = "erty";
+  optBase.innerHTML = "text-visuel";
+  select.appendChild(optBase);
+  images.forEach(function (img) {
+    var opt = optBase.cloneNode(true);
+    opt.value = img.id;
+    opt.innerHTML = img.titre;
+    select.appendChild(opt);
+  });
 }

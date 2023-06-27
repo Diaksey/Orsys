@@ -9,8 +9,9 @@ function init() {
       changeTheme(evt.target.checked);
     });
 
-    initMemeEditor(); 
-
+    initMemeEditor();
+    loadSelectImages(images);
+    
   const event = new Date();
   console.log(event.toISOString());
   var footer = document.getElementsByTagName("footer")[0];
