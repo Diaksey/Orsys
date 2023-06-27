@@ -50,6 +50,10 @@ function renderMeme(meme) {
   }
   var svg = document.querySelector("#editor-view svg");
   var textElement = svg.querySelector("text");
+  var imgElement = svg.querySelector("images");
+  var imgHref=images.find(function(img){return img.id===meme.imageId}).url
+
+  imgElement.setAttribute('xlink:href', imgHref)
   textElement.style.fill = meme.color;
   // textElement.setAttribute('underline', meme.underline);
   textElement.style.textDecoration = meme.underline ? "underline" : "none";
