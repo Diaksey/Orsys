@@ -8,6 +8,9 @@ function init() {
     .addEventListener("change", function (evt) {
       changeTheme(evt.target.checked);
     });
+
+    initMemeEditor(); 
+
   const event = new Date();
   console.log(event.toISOString());
   var footer = document.getElementsByTagName("footer")[0];
