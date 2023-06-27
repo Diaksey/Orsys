@@ -3,14 +3,15 @@
  * @returns {undefined} aucun retour
  */
 function init() {
+
   document
     .querySelector("#theme-switch")
     .addEventListener("change", function (evt) {
-      changeTheme(evt.target.checked);
+    changeTheme(evt.target.checked);
     });
-
-    initMemeEditor();
+    
     loadSelectImages(images);
+    initMemeEditor();
     
   const event = new Date();
   console.log(event.toISOString());
@@ -25,7 +26,6 @@ function init() {
 /**
  * Changement du thème de la page
  * @param {boolean} isDark état du choix de thème Sombre/Clair
- *
  */
 function changeTheme(isDark) {
   var nav = document.getElementsByTagName("nav")[0];
@@ -45,7 +45,6 @@ function changeTheme(isDark) {
     lbl.innerHTML = "Dark";
   }
 }
-
 document.addEventListener("DOMContentLoaded", function (evt) {
   console.log(evt);
   init();
