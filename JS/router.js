@@ -1,17 +1,41 @@
 /**
- *
  * Variable de configuration des routes
  */
 const routerConfif = {
-  routes: [],
+  routes: [
+    {
+        path:'/thumbnail',
+        initialisation:undefined,
+        templateUrl:'/view/thumbnail.html'
+    },
+    {
+        path:'/',
+        initialisation:undefined,
+        templateUrl:'/view/home.html'
+    },
+    {
+        path:'/break',
+        initialisation:undefined,
+        templateUrl:'/view/CeCheminNexistePas.html'
+    }
+    
+  ],
 };
 
-/**
- *
- * Fonction de maintient la route
- *
- */
-export const handleRoute = () => {
-  const pathName = location.pathname;
-  console.log(pathName);
-};
+class Router{
+    /**
+     * Manage la route en cours
+     */
+     handleRoute(){
+        const pathName = location.pathname;
+        console.log(pathName);
+     }
+     /**
+      * Allez à
+      * @param {string} pathName Chemin commencant par / 
+      */
+     changeRoute(pathName){}
+}
+const router = new Router();
+router.handleRoute();
+router.changeRoute();
