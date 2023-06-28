@@ -4,7 +4,7 @@
   "description": "Je suis un repo de test",
   "scripts": {
     "start": "lite-server",
-    "json": "json-server -p 5679 db/db.son"
+    "json": "json-server -p 5679 db/db.json"
   },
   "keywords": [],
   "author": "",
