@@ -13,7 +13,7 @@ const routeConfig = {
     },
     {
       path: "/",
-      initialisation:initHome,
+      initialisation: initHome,
       templateUrl: "/view/home.html",
     },
     {
@@ -39,10 +39,10 @@ class Router {
   get currentRoute() {
     return this.#currentRoute;
   }
-  constructor(){
-    document.addEventListener('DOMContentLoaded',(evt)=>{
-        this.#initRouterLinks()
-    })
+  constructor() {
+    document.addEventListener("DOMContentLoaded", (evt) => {
+      this.#initRouterLinks();
+    });
   }
   // set currentRoute(value){this.#currentRoute=value}
   /**
@@ -61,7 +61,7 @@ class Router {
    * @param {string} pathName Chemin commencant par /
    */
   changeRoute(pathName) {
-    history.pushState(undefined,undefined,pathName);
+    history.pushState(undefined, undefined, pathName);
     this.handleRoute();
   }
   /**
@@ -87,17 +87,21 @@ class Router {
   #loadCurrentDOMContent(domContainerSelector = "article") {
     document.querySelector(domContainerSelector).innerHTML =
       this.#currentRoute.templateText;
+    this.#initRouterLinks(domContainerSelector);
     if (undefined !== this.#currentRoute.initialisation) {
       this.#currentRoute.initialisation();
     }
   }
-  #initRouterLinks(baseSelector='body'){
-    const links = document.querySelectorAll(baseSelector+'a');
-    links.forEach(link=>(
-        link.addEventListener('click',(evt)=>{
-            evt.preventDefault()
-        })
-    ))
+  #initRouterLinks(baseSelector = "body") {
+    const links = document.querySelectorAll(baseSelector + " a");
+    links.forEach((link) => {
+      link.removeEventListener("click", this.#handleLinkEvent);
+      link.addEventListener("click", this.#handleLinkEvent);
+    });
+  }
+  #handleLinkEvent=(evt)=> {
+    evt.preventDefault();
+    this.changeRoute(evt.target.href);
   }
 }
 export const router = new Router();
