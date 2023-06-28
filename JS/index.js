@@ -10,7 +10,6 @@ function init() {
     changeTheme(evt.target.checked);
     });
     
-    loadSelectImages(images);
     initMemeEditor();
     
   const event = new Date();
