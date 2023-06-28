@@ -9,7 +9,7 @@ function init() {
     .addEventListener("change", function (evt) {
     changeTheme(evt.target.checked);
     });
-    
+
     loadSelectImages(images);
     initMemeEditor();
     

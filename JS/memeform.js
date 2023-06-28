@@ -67,20 +67,21 @@ function renderMeme(meme) {
 }
 function loadSelectImages(images) {
   var select = document.forms["meme-form"]["imageId"];
-  var children = select.children[0].cloneNode(true);
-  select.innerHTML='';
-  for (var index = 1; index < children.length; index++) {
-    children[index].remove();
-  }
+  var children0 = select.children[0].cloneNode(true);
+  select.innerHTML="";
+  //for (var index = 1; index < children.length; index++) {
+  //  children[index].remove();
+  //}
   //document.forms['meme-form']['imageId'];
   var optBase = document.createElement("option");
   optBase.value = "erty";
   optBase.innerHTML = "text-visuel";
   select.appendChild(optBase);
+
   images.forEach(function (img) {
-    var opt = optBase.cloneNode(true);
-    opt.value = img.id;
-    opt.innerHTML = img.titre;
+  var opt = optBase.cloneNode(true);
+  opt.value = img.id;
+  opt.innerHTML = img.titre;
     select.appendChild(opt);
   });
 }
