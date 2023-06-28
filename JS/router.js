@@ -1,4 +1,5 @@
 import { initHome } from "./js-views/home.js";
+// import { initThumb } from "./js-views/thumbnail.js";
 
 /**
  * Variable de configuration des routes
@@ -38,6 +39,11 @@ class Router {
   get currentRoute() {
     return this.#currentRoute;
   }
+  constructor(){
+    document.addEventListener('DOMContentLoaded',(evt)=>{
+        this.#initRouterLinks()
+    })
+  }
   // set currentRoute(value){this.#currentRoute=value}
   /**
    * Manage la route en cours
@@ -54,7 +60,10 @@ class Router {
    * Allez à
    * @param {string} pathName Chemin commencant par /
    */
-  changeRoute(pathName) {}
+  changeRoute(pathName) {
+    history.pushState(undefined,undefined,pathName);
+    this.handleRoute();
+  }
   /**
    * Initialise le contenu du template si non présent
    * et déclenche le chargement DOM du contenu
@@ -81,6 +90,14 @@ class Router {
     if (undefined !== this.#currentRoute.initialisation) {
       this.#currentRoute.initialisation();
     }
+  }
+  #initRouterLinks(baseSelector='body'){
+    const links = document.querySelectorAll(baseSelector+'a');
+    links.forEach(link=>(
+        link.addEventListener('click',(evt)=>{
+            evt.preventDefault()
+        })
+    ))
   }
 }
 export const router = new Router();
