@@ -1,10 +1,13 @@
+import {Meme} from "./Meme.js"
+import {images} from "./values.js";
+
 var currentMeme = new Meme();
 //console.log(currentMeme);
-function initMemeEditor() {
+export function initMemeEditor() {
   var form = document.forms["meme-form"];
   form["titre"].addEventListener("input", function (evt) {
     currentMeme.titre = evt.target.value;
-    renderMeme();
+   // renderMeme();
   });
   form["imageId"].addEventListener("input", function (evt) {
     currentMeme.imageId = Number (evt.target.value);
@@ -55,7 +58,7 @@ function renderMeme(meme) {
   var img=images.find(function(img){
     return img.id==meme.imageId})
 
-  imgElement.setAttribute('xlink:href', img.url)
+  imgElement.setAttribute('xlink:href', undefined !==img ? img.url : "https://valorant-landing-page.vercel.app/assets/agents/jett.svg");
   textElement.style.fill = meme.color;
   textElement.style.textDecoration = meme.underline ? "underline" : "none";
   textElement.setAttribute("font-weight", meme.fontWeight);
@@ -64,7 +67,9 @@ function renderMeme(meme) {
   textElement.setAttribute("y", meme.y);
   textElement.innerHTML = meme.text;
   textElement.setAttribute("font-style", meme.italic ? "italic" : "normal");
+  svg.setAttribute('viewBox', `0 0 ${undefined !== img ? img.w :500} ${undefined !== img ? img.h : 500}`); 
 }
+
 function loadSelectImages(images) {
   var select = document.forms["meme-form"]["imageId"];
   var children = select.children[0].cloneNode(true);

@@ -1,3 +1,4 @@
+import {initMemeEditor} from "./memeform.js";
 /**
  * Fonction d'initialisation
  * @returns {undefined} aucun retour
@@ -9,7 +10,7 @@ function init() {
     .addEventListener("change", function (evt) {
     changeTheme(evt.target.checked);
     });
-    
+
     initMemeEditor();
     
   const event = new Date();
