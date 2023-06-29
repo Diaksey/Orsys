@@ -1,5 +1,8 @@
 import { initHome } from "./js-views/home.js";
-// import { initThumb } from "./js-views/thumbnail.js";
+import { initEditor } from "./js-views/editor.js";
+import { initThumb } from "./js-views/thumbnail.js";
+import { initBreak } from "./js-views/break.js";
+import { initAzertyuiop } from "./js-views/azertyuiop.js";
 
 /**
  * Variable de configuration des routes
@@ -8,7 +11,7 @@ const routeConfig = {
   routes: [
     {
       path: "/thumbnail",
-      initialisation: undefined,
+      initialisation: initThumb,
       templateUrl: "/view/thumbnail.html",
     },
     {
@@ -18,17 +21,17 @@ const routeConfig = {
     },
     {
       path: "/break",
-      initialisation: undefined,
+      initialisation: initBreak,
       templateUrl: "/view/CeCheminNexistePas.html",
     },
     {
-      path: "/editor",
-      initialisation: undefined,
+      path: /\/editor(\/(?<id>\d*))?/,
+      initialisation: initEditor,
       templateUrl: "/view/editor.html",
     },
     {
       path: "/azertyuiop",
-      initialisation: undefined,
+      initialisation: initAzertyuiop,
       templateUrl: "/view/azertyuiop.html",
     },
   ],
@@ -36,6 +39,10 @@ const routeConfig = {
 
 class Router {
   #currentRoute;
+  #params = {};
+  get params() {
+    return this.#params;
+  }
   get currentRoute() {
     return this.#currentRoute;
   }
@@ -44,16 +51,25 @@ class Router {
       this.#initRouterLinks();
     });
   }
-  // set currentRoute(value){this.#currentRoute=value}
-  /**
-   * Manage la route en cours
-   */
   handleRoute() {
     const pathName = location.pathname;
     console.log(pathName);
-    this.#currentRoute = routeConfig.routes.find(
-      (route) => route.path == pathName
-    );
+    this.#currentRoute = routeConfig.routes.find((route) => {
+      if (route.path instanceof RegExp) {
+        // C'est une regex
+        const regReturn=route.path.exec(pathName)
+        if (null!==regReturn){
+          // ça a marché
+          this.#params={...regReturn.groups}
+          return true;
+        }
+          else return false
+        }
+        else {
+        // C'est une chaine
+        return route.path === pathName;
+      }
+    });
     this.#instanciateCurrentRouteTemplate();
   }
   /**
@@ -99,9 +115,9 @@ class Router {
       link.addEventListener("click", this.#handleLinkEvent);
     });
   }
-  #handleLinkEvent=(evt)=> {
+  #handleLinkEvent = (evt) => {
     evt.preventDefault();
     this.changeRoute(evt.target.href);
-  }
+  };
 }
 export const router = new Router();
